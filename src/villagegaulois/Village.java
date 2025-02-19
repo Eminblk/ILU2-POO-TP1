@@ -44,20 +44,23 @@ public class Village {
 		return null;
 	}
 
-	public String afficherVillageois() {
-		StringBuilder chaine = new StringBuilder();
-		if (nbVillageois < 1) {
-			chaine.append("Il n'y a encore aucun habitant au village du chef "
-					+ chef.getNom() + ".\n");
-		} else {
-			chaine.append("Au village du chef " + chef.getNom()
-					+ " vivent les légendaires gaulois :\n");
-			for (int i = 0; i < nbVillageois; i++) {
-				chaine.append("- " + villageois[i].getNom() + "\n");
-			}
-		}
-		return chaine.toString();
+	public String afficherVillageois() throws VillageSansChefException {
+	    StringBuilder chaine = new StringBuilder();
+	    if (chef == null) {
+	        throw new VillageSansChefException("Le village " + nom + " n'a pas de chef. Impossible d'afficher les villageois.");
+	    }
+
+	    if (nbVillageois < 1) {
+	        chaine.append("Il n'y a encore aucun habitant au village du chef " + chef.getNom() + ".\n");
+	    } else {
+	        chaine.append("Au village du chef " + chef.getNom() + " vivent les légendaires gaulois :\n");
+	        for (int i = 0; i < nbVillageois; i++) {
+	            chaine.append("- " + villageois[i].getNom() + "\n");
+	        }
+	    }
+	    return chaine.toString();
 	}
+
 	
 	public class Marche{
 		private Etal[] etals;
@@ -175,13 +178,18 @@ public class Village {
 	    return marche.trouverVendeur(vendeur); 
 	}
 
-	public String partirVendeur(Gaulois vendeur) {
+	public String partirVendeur (Gaulois vendeur){
+		try {
 	    Etal etal = rechercherEtal(vendeur);
 	    if (etal != null) {
 	        return etal.libererEtal();
 	    } else {
 	        return "Le vendeur " + vendeur.getNom() + " n'a pas d'étal dans le marché.\n";
 	    }
+	} catch (EtalNonOccupeException e) {
+		e.printStackTrace();
+		return " ";
+	}
 	}
 	
 	public String afficherMarche() {
