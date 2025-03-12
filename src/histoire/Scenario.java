@@ -11,12 +11,12 @@ import villagegaulois.VillageSansChefException;
 public class Scenario {
 
     public static void main(String[] args) {
-        Village village = new Village("le village des irréductibles", 10, 5);
+        Village village = new Village("le village des irreductibles", 10, 5);
         Chef abraracourcix = new Chef("Abraracourcix", 10, village);
         village.setChef(abraracourcix);
         Druide druide = new Druide("Panoramix", 2, 5, 10);
-        Gaulois obelix = new Gaulois("Obélix", 25);
-        Gaulois asterix = new Gaulois("Astérix", 8);
+        Gaulois obelix = new Gaulois("Obelix", 25);
+        Gaulois asterix = new Gaulois("Asterix", 8);
         Gaulois assurancetourix = new Gaulois("Assurancetourix", 2);
         Gaulois bonemine = new Gaulois("Bonemine", 7);
 
@@ -25,12 +25,13 @@ public class Scenario {
         village.ajouterHabitant(asterix);
         village.ajouterHabitant(obelix);
         village.ajouterHabitant(druide);
-//        village.ajouterHabitant(abraracourcix);
         try {
             System.out.println(village.afficherVillageois());
         } catch (VillageSansChefException e) {
             System.out.println("Erreur: " + e.getMessage());
         }
+        
+        // test
         
         System.out.println(village.rechercherVendeursProduit("fleurs"));
         System.out.println(village.installerVendeur(bonemine, "fleurs", 20));
