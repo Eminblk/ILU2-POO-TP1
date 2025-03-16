@@ -1,20 +1,55 @@
 package histoire;
 
-import personnages.Chef;
 import personnages.Gaulois;
 import villagegaulois.Etal;
 import villagegaulois.Village;
-import villagegaulois.EtalNonOccupeException;
+import villagegaulois.VillageSansChefException;
 
 public class ScenarioCasDegrade {
 
-	 public static void main(String[] args) throws EtalNonOccupeException {
+	public static void main(String[] args) {
+		
+		//libererEtal
+		try {
 			Etal etal = new Etal();
 			etal.libererEtal();
-			System.out.println("Fin du test");
-		 	Village village = new Village(null, 0, 0);
-	        Gaulois bonemine = new Gaulois("Bonemine", 10);
-
-	        System.out.println(village.partirVendeur(bonemine));  
-	    }
+		}
+		catch(NullPointerException e){
+			System.out.println("L'étal ne comporte pas de vendeur ");
+			e.printStackTrace();
+		}
+		
+		//acheterProduit b)
+		try {
+			Etal etal = new Etal();
+			Gaulois acheteur = new Gaulois("Acheteur", 10);
+			etal.acheterProduit(-5, acheteur);
+			
+		}
+		catch(IllegalArgumentException e) {
+			System.out.println("L'achat n'a pas été effecuté ");
+			e.printStackTrace();
+		}
+		
+		
+		//acheter produit c) 
+		try {
+			Etal etal = new Etal();
+			Gaulois acheteur = new Gaulois("Acheteur", 10);
+			etal.acheterProduit(3, acheteur);
+        } catch (IllegalStateException e) {
+            System.out.println("L'achat n'a pas été effectué car l'étal est vide");
+            e.printStackTrace();
+        }
+		
+		//village sans chef
+		try {
+            Village village = new Village("Village des Irréductibles", 10, 4);
+            System.out.println(village.afficherVillageois());
+        } catch (VillageSansChefException e) {
+            System.out.println("Le village ne comporte pas de chef");
+            e.printStackTrace();
+        }
 	}
+
+}

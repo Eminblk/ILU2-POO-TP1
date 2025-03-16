@@ -4,7 +4,6 @@ import personnages.Chef;
 import personnages.Druide;
 import personnages.Gaulois;
 import villagegaulois.Etal;
-import villagegaulois.EtalNonOccupeException;
 import villagegaulois.Village;
 import villagegaulois.VillageSansChefException;
 
@@ -31,8 +30,7 @@ public class Scenario {
             System.out.println("Erreur: " + e.getMessage());
         }
         
-        // test
-        
+        // Tests d'installation et de recherche des vendeurs
         System.out.println(village.rechercherVendeursProduit("fleurs"));
         System.out.println(village.installerVendeur(bonemine, "fleurs", 20));
         System.out.println(village.rechercherVendeursProduit("fleurs"));
@@ -43,9 +41,12 @@ public class Scenario {
         System.out.println(village.rechercherVendeursProduit("fleurs"));
         Etal etalFleur = village.rechercherEtal(bonemine);
 
+        // Tests d'achat de produit
         System.out.println(etalFleur.acheterProduit(10, abraracourcix));
         System.out.println(etalFleur.acheterProduit(15, obelix));
         System.out.println(etalFleur.acheterProduit(15, assurancetourix));
+        
+        // Test de départ d'un vendeur
         System.out.println(village.partirVendeur(bonemine));
         System.out.println(village.afficherMarche());
     }

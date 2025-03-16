@@ -1,34 +1,33 @@
 package personnages;
 
 public class Personnage {
-	protected String nom;
-	protected int force;
+    protected String nom;
+    protected int force;
 
-	public Personnage(String nom, int force) {
-		this.nom = nom;
-		this.force = force;
-		// Invariant
-		assert force > 0;
-	}
+    public Personnage(String nom, int force) {
+        this.nom = nom;
+        this.force = force;
+        assert force > 0;
+    }
 
-	public int getForce() {
-		return force;
-	}
+    public int getForce() {
+        return force;
+    }
 
-	public String getNom() {
-		return nom;
-	}
-	
-	@Override
-	public String toString() {
-		return "[nom=" + nom + ", force=" + force + "]";
-	}
+    public String getNom() {
+        return nom;
+    }
 
-	public void parler(String texte) {
-		System.out.println(prendreParole() + "« " + texte + "»");
-	}
+    @Override
+    public String toString() {
+        return "[nom=" + nom + ", force=" + force + "]";
+    }
 
-	protected String prendreParole() {
-		return nom + " : ";
-	}
+    public void parler(String texte) {
+        System.out.println(prendreParole() + "« " + texte + "»");
+    }
+
+    protected String prendreParole() {
+        return nom + " : ";
+    }
 }
