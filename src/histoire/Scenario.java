@@ -24,6 +24,7 @@ public class Scenario {
         village.ajouterHabitant(asterix);
         village.ajouterHabitant(obelix);
         village.ajouterHabitant(druide);
+        
         try {
             System.out.println(village.afficherVillageois());
         } catch (VillageSansChefException e) {
@@ -40,12 +41,37 @@ public class Scenario {
         System.out.println(village.rechercherVendeursProduit("fleurs"));
         Etal etalFleur = village.rechercherEtal(bonemine);
 
-        // Tests d'achat de produit
-        System.out.println(etalFleur.acheterProduit(10, abraracourcix));
-        System.out.println(etalFleur.acheterProduit(15, obelix));
-        System.out.println(etalFleur.acheterProduit(15, assurancetourix)); //TODO erreur
+        try {
+            System.out.println(etalFleur.acheterProduit(10, abraracourcix));
+        } catch (Exception e) {
+            System.out.println("Erreur lors de l'achat par Abraracourcix : " + e.getMessage());
+            e.printStackTrace();
+        }
         
-        // Test de départ d'un vendeur
+        try {
+            System.out.println(etalFleur.acheterProduit(15, obelix));
+        } catch (Exception e) {
+            System.out.println("Erreur lors de l'achat par Obélix : " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        try {
+            System.out.println(etalFleur.acheterProduit(15, assurancetourix));
+        } catch (IllegalStateException e) {
+            System.out.println("L'achat n'a pas été effectué car l'étal est vide ");
+            e.printStackTrace();
+        }
+        
+        System.out.println("Test d'achat avec quantité négative sur un étal occupé :");
+        System.out.println(village.installerVendeur(asterix, "boucliers", 5));
+        Etal etalBoucliers = village.rechercherEtal(asterix);
+        try {
+            System.out.println(etalBoucliers.acheterProduit(-3, abraracourcix));
+        } catch (IllegalArgumentException e) {
+            System.out.println("L'achat n'a pas été effectué car la quantité doit être positive");
+            e.printStackTrace();
+        }
+        
         System.out.println(village.partirVendeur(bonemine));
         System.out.println(village.afficherMarche());
     }
