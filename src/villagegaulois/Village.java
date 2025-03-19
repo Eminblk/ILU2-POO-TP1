@@ -92,21 +92,21 @@ public class Village {
 		}
 		
 		private Etal[] trouverEtals(String produit) {
-			int nbr_etal= 0;
+			int nbrEtal= 0; //TODO erreur
 			for(int i = 0; i < etals.length ; i++) {
 				if((etals[i].isEtalOccupe()) && etals[i].contientProduit(produit)) {
-					nbr_etal ++;
+					nbrEtal ++;
 				}
 			}
-			Etal[] etal_trouve = new Etal[nbr_etal];
+			Etal[] etalTrouve = new Etal[nbrEtal]; //TODO erreur
 			int index = 0;
 			for(int i = 0; i < etals.length ; i++) {
 				if((etals[i].isEtalOccupe()) && etals[i].contientProduit(produit)) {
-					etal_trouve[index] = etals[i];
+					etalTrouve[index] = etals[i];
 					index++;
 				}
 			}
-			return etal_trouve;
+			return etalTrouve;
 			
 		}
 		

@@ -29,8 +29,7 @@ public class Scenario {
         } catch (VillageSansChefException e) {
             System.out.println("Erreur: " + e.getMessage());
         }
-        
-        // Tests d'installation et de recherche des vendeurs
+         
         System.out.println(village.rechercherVendeursProduit("fleurs"));
         System.out.println(village.installerVendeur(bonemine, "fleurs", 20));
         System.out.println(village.rechercherVendeursProduit("fleurs"));
@@ -44,7 +43,7 @@ public class Scenario {
         // Tests d'achat de produit
         System.out.println(etalFleur.acheterProduit(10, abraracourcix));
         System.out.println(etalFleur.acheterProduit(15, obelix));
-        System.out.println(etalFleur.acheterProduit(15, assurancetourix));
+        System.out.println(etalFleur.acheterProduit(15, assurancetourix)); //TODO erreur
         
         // Test de départ d'un vendeur
         System.out.println(village.partirVendeur(bonemine));

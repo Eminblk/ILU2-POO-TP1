@@ -1,6 +1,6 @@
 package villagegaulois;
 
-public class VillageSansChefException extends Exception {
+public class VillageSansChefException extends Exception { //TODO erreur
     private static final long serialVersionUID = 1L;
     public VillageSansChefException(String message) {
         super(message);
